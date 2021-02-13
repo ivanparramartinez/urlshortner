@@ -82,9 +82,9 @@ section {
     <button type="submit" id="link">Shorten</button>
   </div>
   </form>
-  
+
   <section id="section"><h2></h2></section>
-    
+
 </main>
 
 <!-- This script is made in Ajax-->
@@ -96,12 +96,13 @@ section {
       type: 'POST',
       url: '/create',
       data: {
-        link: $('#link').val(),
+        link: $('#link').val().replace(/(^\w+:|^)\/\//, ''),
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
       },
-      success: function(){
-        
+      success: function(data){
+        $('h2').html("localhost:8000/"+data)
       }
     });
   });
+  
 </script>
